@@ -37,6 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               focus:border-blue-500 focus:ring-blue-500 
               ${icon ? 'pl-10' : 'pl-4'} pr-4 py-3
               transition-all duration-200
+              text-gray-900 placeholder-gray-400 bg-white
               ${error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}
               ${className}
             `}

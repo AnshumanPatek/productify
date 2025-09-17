@@ -52,7 +52,7 @@ export default function FilterBar({
           <select
             value={filterState.category}
             onChange={(e) => onFilterChange({ category: e.target.value })}
-            className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+            className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4 text-gray-900 bg-white"
             disabled={loading}
           >
             <option value="">All Categories</option>
@@ -68,7 +68,7 @@ export default function FilterBar({
           <select
             value={filterState.sortBy}
             onChange={(e) => onFilterChange({ sortBy: e.target.value as SortOption })}
-            className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+            className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4 text-gray-900 bg-white"
             disabled={loading}
           >
             {sortOptions.map((option) => (
@@ -129,7 +129,7 @@ export default function FilterBar({
               <select
                 value={filterState.category}
                 onChange={(e) => onFilterChange({ category: e.target.value })}
-                className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4 text-gray-900 bg-white"
                 disabled={loading}
               >
                 <option value="">All Categories</option>
@@ -148,7 +148,7 @@ export default function FilterBar({
               <select
                 value={filterState.sortBy}
                 onChange={(e) => onFilterChange({ sortBy: e.target.value as SortOption })}
-                className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                className="w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4 text-gray-900 bg-white"
                 disabled={loading}
               >
                 {sortOptions.map((option) => (
