@@ -94,8 +94,6 @@ export default function Pagination({ pagination, onPageChange, loading = false }
                   onClick={() => onPageChange(Number(page))}
                   disabled={loading}
                   className="min-w-10 h-10"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {page}
                 </Button>
