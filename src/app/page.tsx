@@ -3,7 +3,9 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Sparkles } from 'lucide-react';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import FilterBar from '@/components/FilterBar';
 import Pagination from '@/components/Pagination';
@@ -166,6 +168,12 @@ export default function Home() {
     setSelectedProduct(null);
   }, []);
 
+  // Handle search from header/hero
+  const handleSearchFromHero = useCallback((query: string) => {
+    setFilterState(prev => ({ ...prev, searchQuery: query }));
+    setPagination(prev => ({ ...prev, currentPage: 1 }));
+  }, []);
+
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -189,57 +197,30 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <motion.header
-        className="bg-white/80 backdrop-blur-lg border-b border-gray-200 sticky top-0 z-40"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            >
-              <div className="relative">
-                <ShoppingBag className="h-8 w-8 text-blue-600" />
-                <Sparkles className="h-4 w-4 text-yellow-500 absolute -top-1 -right-1" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Productify
-                </h1>
-                <p className="text-sm text-gray-600">Product Showcase Explorer</p>
-              </div>
-            </motion.div>
-            
-            <div className="hidden md:flex items-center space-x-6 text-sm text-gray-600">
-              <span>Discover • Explore • Shop</span>
-            </div>
-          </div>
-        </div>
-      </motion.header>
+      <Header onSearchChange={handleSearchFromHero} />
+
+      {/* Hero Section */}
+      <HeroSection onSearchChange={handleSearchFromHero} />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
+      <main id="products-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Discover Amazing{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6">
+            Featured{' '}
+            <span className="gradient-text">
               Products
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our curated collection of products with powerful filtering, sorting, and search capabilities.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Explore our curated collection with advanced filtering, smart search, and seamless browsing experience.
           </p>
         </motion.div>
 
@@ -287,27 +268,7 @@ export default function Home() {
       />
 
       {/* Footer */}
-      <motion.footer
-        className="bg-gray-900 text-white mt-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <ShoppingBag className="h-6 w-6 text-blue-400" />
-              <span className="text-xl font-bold">Productify</span>
-            </div>
-            <p className="text-gray-400">
-              Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion
-            </p>
-            <p className="text-gray-500 text-sm mt-2">
-              © 2025 Productify. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </motion.footer>
+      <Footer />
     </div>
   );
 }
